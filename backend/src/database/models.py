@@ -5,7 +5,10 @@ import json
 
 database_filename = "database.db"
 project_dir = os.path.dirname(os.path.abspath(__file__))
-database_path = "sqlite:///{}".format(os.path.join(project_dir, database_filename))
+#database_path = "sqlite:///{}".format(os.path.join(project_dir, database_filename))
+
+database_name = "coffee_shop"
+database_path = "postgres://{}:{}@{}/{}".format('postgres', '123456', 'localhost:5432', database_name)
 
 db = SQLAlchemy()
 
@@ -37,17 +40,16 @@ class Drink(db.Model):
     # Autoincrementing, unique primary key
     id = Column(Integer().with_variant(Integer, "sqlite"), primary_key=True)
     # String Title
-    title = Column(String(80), unique=True)
+    title = Column(String(80), unique=True, nullable=False)
     # the ingredients blob - this stores a lazy json blob
     # the required datatype is [{'color': string, 'name':string, 'parts':number}]
-    recipe =  Column(String(180), nullable=False)
+    recipe =  Column(String(360), nullable=False)
 
     '''
     short()
         short form representation of the Drink model
     '''
     def short(self):
-        print(json.loads(self.recipe))
         short_recipe = [{'color': r['color'], 'parts': r['parts']} for r in json.loads(self.recipe)]
         return {
             'id': self.id,
