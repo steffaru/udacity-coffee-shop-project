@@ -179,6 +179,12 @@ def delete_drink(drink_id):
         code = 404
         abort(code)
 
+@app.route('/api/auth', methods=['DELETE'])
+@requires_auth('post:drinks')
+def auth(jwt):
+    print(jwt)
+    return  "Not implemented, yet"
+
 ## Error Handling
 
 @app.errorhandler(404)
