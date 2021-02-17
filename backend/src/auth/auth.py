@@ -165,9 +165,3 @@ def requires_auth(permission=''):
 
         return wrapper
     return requires_auth_decorator
-
-@app.route('/image')
-@requires_auth('get:drinks')
-def images(jwt):
-    print(jwt)
-    return  "Not implemented, yet"
