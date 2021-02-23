@@ -52,7 +52,7 @@ The `--reload` flag will detect file changes and restart the server automaticall
 
 ### Setup Auth0  🧰🧰
 
-1. Create a new Auth0 Account 👩‍💻
+1. Create two new Auth0 Account 👩‍💻
 2. Select a unique tenant domain
 3. Create a new, single page web application
 4. Create a new API
@@ -67,9 +67,15 @@ The `--reload` flag will detect file changes and restart the server automaticall
 6. Create new roles for:
     - Barista
         - can `get:drinks-detail`
-    - Manager
+        - account ```eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN1cEdUbE5XSTlsZzhWazhOQnR0RSJ9.eyJpc3MiOiJodHRwczovL3VkYWNpdHktZGV2LXByb2plY3QudXMuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDYwMzNkNzcwMjkxOGM2MDA2OWU4ODQ1ZSIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTAwMCIsImlhdCI6MTYxNDAzNjE3OCwiZXhwIjoxNjE0MDQzMzc4LCJhenAiOiJjNXdlOTlQeWRIeUtzczNGVjBXendhR0oySktaVHFUbSIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZ2V0OmRyaW5rcy1kZXRhaWwiXX0.fDi5z70acbg6kd58v6Ce4dWi9veAlET85u5z5JouDkRkLovEPqyySKJb1Vc7MNksRevfGCkvF6xapd_NN_PPUwsW689hDnT-fRUO1B94DfaJ9NFeYe6es6BFft6g8x30iQCxlQWjKPZhCeAB_ZAA04QXz-uQibBucVyQYYraCnDxndSKK7ckp_qDyA5xr6DjXr9CU59-hM1fKkAGZONukQ5WSYCGjhr3S5GChcU5utgd4-oj30eW_LLdS7EzqUxRNbfHiCFxi-EFhgyqjZ1N-0AjQEjk61vXmea8mpRhgzlZXNQeA7ZhqIZgMBhmL1wuWm8nf6AdGFCr3eMQtqXAFQ```
+        
+        - Manager
         - can perform all actions
-7. Test your endpoints with [Postman](https://getpostman.com). 
+        - account
+        ```eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN1cEdUbE5XSTlsZzhWazhOQnR0RSJ9.eyJpc3MiOiJodHRwczovL3VkYWNpdHktZGV2LXByb2plY3QudXMuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDYwMzNkODAyYWY1MDQ2MDA2OTYyYmE5OSIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTAwMCIsImlhdCI6MTYxNDAzNTQ3NiwiZXhwIjoxNjE0MDQyNjc2LCJhenAiOiJjNXdlOTlQeWRIeUtzczNGVjBXendhR0oySktaVHFUbSIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmRyaW5rcyIsImdldDpkcmlua3MtZGV0YWlsIiwicGF0Y2g6ZHJpbmtzIiwicG9zdDpkcmlua3MiXX0.dR2ZEyJfgo11PtdRAcrDDrvkAJQ9J-flJZV1h5giuNnjTwRuRcm5OquRwIL_b6LONvrTKGnLH3TRMmFp43YzFN7P1GnAFn_-uvmpHxv556A2IJPeC54hW_hZnxITSArtGQRku5tHqM2qzAV0WcHC8V9-wXSCUM20FbflWViVDa8FUHfHci-4d8igaey--Hi6Tq9pBcs7fDkTStNjDXfM2uqM4gn4Uvo6qnMuHkzpAc1ON9upn85AQjGHpyY__7SJfpVrzJ9Emgd2roSTVP6bwDET81agbIF7ZtCR6WxRdyqpw-oMvMykQ1uGQ71psoeHEC5YclPKdNsNbUSxUggBpA```
+
+
+7. Test your endpoints with [Postman](https://getpostman.com).🧫🧫
     - Register 2 users - assign the Barista role to one and Manager role to the other.
     - Sign into each account and make note of the JWT.
     - Import the postman collection `./starter_code/backend/udacity-fsnd-udaspicelatte.postman_collection.json`
@@ -78,8 +84,6 @@ The `--reload` flag will detect file changes and restart the server automaticall
     - Export the collection overwriting the one we've included so that we have your proper JWTs during review!
 
 ### Implement The Server ♀️🤹‍
-
-There are `@TODO` comments throughout the `./backend/src`. We recommend tackling the files in order and from top to bottom:
 
 1. `./src/auth/auth.py`
 2. `./src/api.py`
