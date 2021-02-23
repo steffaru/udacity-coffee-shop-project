@@ -1,4 +1,4 @@
-# Coffee Shop Udacity Project Full Stack Nanodegree 👀👩‍💻
+# Coffee Shop Udacity Project Full Stack Nanodegree 👀👩‍💻 ☕🧁🍩🍵🧉🍪
 
 This project is a **Coffee Shop** that I do myself for **Udacity**. In this you can add see drinks in the list. If you are barista or manager access to much actions; like get drinks, edit drinks, delete drinks and create drinks. As part of the Fullstack Nanodegree, this serves as practice for **Course 4: ### Identity and Access Management**. In this project, I applied API endpoint structuring, implementation, Authentication with AUTH0, based on role access management strategies to control different types of user.
 
