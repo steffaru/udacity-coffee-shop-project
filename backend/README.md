@@ -60,13 +60,14 @@ The `--reload` flag will detect file changes and restart the server automaticall
         - Enable RBAC
         - Enable Add Permissions in the Access Token
 5. Create new API permissions:
+    - `get:drinks`
     - `get:drinks-detail`
     - `post:drinks`
     - `patch:drinks`
     - `delete:drinks`
 6. Create new roles for:
     - Barista
-        - can `get:drinks-detail`
+        - can ` get:drinks, get:drinks-detail`
         - account ```eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN1cEdUbE5XSTlsZzhWazhOQnR0RSJ9.eyJpc3MiOiJodHRwczovL3VkYWNpdHktZGV2LXByb2plY3QudXMuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDYwMzNkNzcwMjkxOGM2MDA2OWU4ODQ1ZSIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTAwMCIsImlhdCI6MTYxNDAzNjE3OCwiZXhwIjoxNjE0MDQzMzc4LCJhenAiOiJjNXdlOTlQeWRIeUtzczNGVjBXendhR0oySktaVHFUbSIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZ2V0OmRyaW5rcy1kZXRhaWwiXX0.fDi5z70acbg6kd58v6Ce4dWi9veAlET85u5z5JouDkRkLovEPqyySKJb1Vc7MNksRevfGCkvF6xapd_NN_PPUwsW689hDnT-fRUO1B94DfaJ9NFeYe6es6BFft6g8x30iQCxlQWjKPZhCeAB_ZAA04QXz-uQibBucVyQYYraCnDxndSKK7ckp_qDyA5xr6DjXr9CU59-hM1fKkAGZONukQ5WSYCGjhr3S5GChcU5utgd4-oj30eW_LLdS7EzqUxRNbfHiCFxi-EFhgyqjZ1N-0AjQEjk61vXmea8mpRhgzlZXNQeA7ZhqIZgMBhmL1wuWm8nf6AdGFCr3eMQtqXAFQ```
         
         - Manager
