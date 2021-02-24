@@ -13,7 +13,7 @@ setup_db(app)
 CORS(app)
 
 
-# if uncomment the following line to initialize the datbase
+# if uncomment the following line to initialize the database
 #db_drop_and_create_all()
 
 
@@ -143,12 +143,11 @@ def patch_drinks(f, drink_id):
 # where id is the id of the deleted record or error code
 
 @app.route('/drinks/<int:drink_id>', methods=['DELETE'])
-# @requires_auth('delete:drinks')
-def delete_drink(drink_id):
+@requires_auth('delete:drinks')
+def delete_drink(f, drink_id):
     code = 200
     drink = Drink.query.filter(Drink.id==drink_id).one_or_none()
     try:
-        print(drink)
         if drink is None:
             code = 404
             abort(code)

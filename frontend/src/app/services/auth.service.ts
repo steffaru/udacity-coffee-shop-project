@@ -72,6 +72,7 @@ export class AuthService {
     this.token = '';
     this.payload = null;
     this.set_jwt();
+    localStorage.clear()
     window.location.href = '/'
   }
 
