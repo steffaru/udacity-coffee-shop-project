@@ -28,12 +28,12 @@ def get_drinks():
     drinks = Drink.query.all()
     if drinks is None:
         abort(404)
-        
+ 
     drinks_short = []
     for item in drinks:
         drinks_short.append(item.short())
-    try:
 
+    try:
         return jsonify({
             "code": 200,
             "success": True,
@@ -76,13 +76,14 @@ def post_new_drinks(f):
     drink = None
     res = request.json
     new_title = res.get('title', None)
-    new_recipe = json.dumps(res.get('recipe', None))
+    new_recipe = res.get('recipe', None)
     try:
         if not new_title:
             code = 404
         else:
             drink_exist = Drink.query.filter_by(title=new_title).first()
             if drink_exist is None:
+                new_recipe = parse_recipe(new_recipe)
                 drink = Drink(title=new_title, recipe=new_recipe)
                 drink.insert()
                 drink = Drink.query.filter_by(title=new_title).first()
@@ -95,7 +96,7 @@ def post_new_drinks(f):
                 code = 406
     except:
         code = 422
-        abort(code)
+    abort(code)
     
 
 # PATCH /drinks/<id> --> private
@@ -103,18 +104,25 @@ def post_new_drinks(f):
 # returns status code 200 and json {"success": True, "drinks": drink}
 # where drink an array containing only the updated drink or error code
     
-@app.route('/drinks/<int:id>', methods=['PATCH'])
+@app.route('/drinks/<int:drink_id>', methods=['PATCH'])
 @requires_auth('patch:drinks')
-def patch_drinks(f, id):
+def patch_drinks(f, drink_id):
     code = 200
+    res = request.json
+    new_title = res.get('title', None)
+    new_recipe = res.get('recipe', None)
     try:
-        res = request.get_json()
-        drink = Drink.query.filter(Drink.id==id).one_or_none()
+        drink = Drink.query.filter(Drink.id == drink_id).one_or_none()
         if drink:
-            drink.title = res.get('title')
-            drink.name = res.get('name')
-            drink.recipe = json.dumps(res.get('recipe'))
-
+            drink_title_exist = Drink.query.filter_by(title=new_title).first()
+            if drink_title_exist:
+                code = 406
+                abort(code)
+            if new_recipe:
+                new_recipe = parse_recipe(new_recipe)
+                drink.recipe = new_recipe
+            if new_title:
+                drink.title = new_title
             drink.update()
             return jsonify({
                 "code": code,
@@ -124,6 +132,7 @@ def patch_drinks(f, id):
         else:
             code = 404
             abort(code)
+    
     except:
         code = 422
         abort(code)
@@ -134,27 +143,36 @@ def patch_drinks(f, id):
 # where id is the id of the deleted record or error code
 
 @app.route('/drinks/<int:drink_id>', methods=['DELETE'])
-@requires_auth('delete:drinks')
-def delete_drink(f ,drink_id):
+# @requires_auth('delete:drinks')
+def delete_drink(drink_id):
     code = 200
+    drink = Drink.query.filter(Drink.id==drink_id).one_or_none()
     try:
-        drink = Drink.query.filter(Drink.id == drink_id).one_or_none()
-
+        print(drink)
         if drink is None:
             code = 404
             abort(code)
-        
         else:
             drink.delete()
             return jsonify({
                 "code": code,
                 "success": True,
-                "delete": drink.id + ' deleted'
+                "delete": drink.id
             })
     except:
-        code = 404
+        code = 422
         abort(code)
 
+
+def parse_recipe(recipe):
+    if type(recipe) is dict:
+        recipe = json.dumps([recipe])
+    elif type(recipe) is list:
+        recipe = json.dumps(recipe)
+    else:
+        code = 406
+        abort(code)
+    return recipe
 
 ## Error Handling
 
